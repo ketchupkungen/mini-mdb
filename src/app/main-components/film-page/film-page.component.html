@@ -1,0 +1,279 @@
+<div class="hidden-md-up">
+  <img class="mdb-img" src="/assets/images/films/{{film.imagePath}}">
+  <span class="upload-btn">
+    <app-upload-picture [film]="film"></app-upload-picture>
+  </span>
+</div>
+
+<div class="container-fluid pt-2 pt-sm-5" [@fadeIn-2]>
+  <div class="row">
+
+    <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-4 flex-last flex-md-first">
+      <img class="img-fluid hidden-sm-down" src="/assets/images/films/{{film.imagePath}}" [@fadeIn-1]>
+      <span class="upload-btn">
+        <app-upload-picture [film]="film"></app-upload-picture>
+      </span>
+
+      <!-- review content -->
+      <div class="review-area mt-3 mb-4 p-4" [@fadeIn-2]>
+        <div class="pt-2 mb-3">
+          <h6 class="headliner pr-5">
+            <span class="underliner">User Reviews</span>
+          </h6>
+        </div>
+        <p>{{reviewstatus}}</p>
+        <div class="inside-reviews p-3 mt-4" *ngFor="let review of reviews">
+          <span class="date-format pr-3">{{review.timeCreated | date}}</span>
+          <div class="d-inline-block mr-2">
+            <app-star-rating [rating]="review.rating"></app-star-rating>
+          </div>
+          <p class="r-text mt-3" *ngIf="review.textbody">
+            {{review.textbody}}
+          </p>
+          <p *ngIf="review.textbody" class="r-author" title="Source Title">Reviewed by
+            <span class="font-weight-bold">{{review.username}}
+            </span>
+          </p>
+          <p class="mt-2 r-author" *ngIf="!review.textbody">
+            <small>Rating Only</small> by {{review.username}}
+          </p>
+        </div>
+        <div class="row mt-4">
+          <div class="col">
+            <button *ngIf="globalservice.user" type="button" class="add-review btn btn-secondary btn" (click)="reviewForm = !reviewForm">Add your review</button>
+            <form *ngIf="reviewForm" #r="ngForm" (ngSubmit)="submitReview(r.value)">
+              <div class="form-group">
+                <br>
+                <label for="textbody">Review of '{{film.title}}'</label>
+                <textarea class="form-control" id="textbody" name="textbody" rows="3" ngModel></textarea>
+              </div>
+              <div class="form-group">
+                <label for="rating">Rating</label>
+                <select type="select" class="form-control" name="rating" id="rating" ngModel>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <button type="submit" class="submit-review btn btn-secondary btn-sm">Submit</button>
+              <button type="button" class="cancel-review btn btn-danger btn-sm" (click)="reviewForm = !reviewForm">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="offset-xs-1 col-xs-10 col-md-5 col-lg-4 mt-4 mt-sm-0">
+      <h1 class="app-headline">
+        <span *ngIf="!globalservice.user">{{film.title}}</span>
+        <inline-editor *ngIf="globalservice.user" type="text" empty="Add a title" [(ngModel)]="film.title" (onSave)="saveEditable($event, 'films', 'title')"></inline-editor>
+      </h1>
+      <table class="table table-bordered my-4">
+        <tbody>
+          <tr>
+            <td>
+              <span class="d-inline-flex align-items-center">
+                <span class="pr-2">Avg Rating:</span>
+                <app-star-rating [rating]="film.avgRating">
+                </app-star-rating>
+                <span class="pl-2">({{film.avgRating | number: '1.2-2'}})</span>
+              </span>
+            </td>
+            <td>
+              <span class="d-inline-flex">
+                <span class="pr-2">Ratings:</span>
+                <strong>
+                  <span *ngIf="film.ratingCount">
+                    {{film.ratingCount}}
+                  </span>
+                </strong>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="d-inline-flex justify-content-center">
+                <span class="pr-2">Genre:</span>
+                <span *ngIf="!globalservice.user">{{film.genre}}</span>
+                <strong>
+                  <inline-editor *ngIf="globalservice.user" empty="Add a genre" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'films', 'genre')"
+                    [options]="genreSelectOptions" value="valor"></inline-editor>
+                </strong>
+              </span>
+            </td>
+            <td>
+              <span class="d-inline-flex">
+                <span class="pr-2">Year:</span>
+                <span *ngIf="!globalservice.user">{{film.year}}</span>
+                <strong>
+                  <inline-editor *ngIf="globalservice.user" empty="Add a release Year" type="text" [(ngModel)]="film.year" (onSave)="saveEditable($event, 'films', 'year')"></inline-editor>
+                </strong>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        <span *ngIf="!globalservice.user">{{film.plot}}</span>
+        <inline-editor *ngIf="globalservice.user" empty="Add a plot text" type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event, 'films', 'plot')"></inline-editor>
+      </p>
+
+      <!--  director area -->
+      <div class="d-inline-flex align-items-baseline pt-4 mb-3">
+        <h6 class="headliner pr-4">
+          <span class="underliner-colored">DIRECTED BY</span>
+        </h6>
+        <p *ngIf="globalservice.user" class="sub-linker" (click)="addDirectorForm = !addDirectorForm">
+          <span>Add a Director</span> > </p>
+      </div>
+
+      <form *ngIf="addDirectorForm" #d="ngForm" (ngSubmit)="submitPerson(d.value, 'directorId', 'films_directors')" class="bg-secondary p-2 mb-2">
+        <div class="add-content-form">
+          <div class="form-group">
+            <span>Select a person from the database</span>
+
+            <select class="form-control" id="directorId" name="directorId" ngModel>
+              <option *ngFor="let person of allPersons" value="{{person.id}}">{{person.firstName}} {{person.lastName}}
+              </option>
+            </select>
+            <button type="button" class="btn-primary btn my-2" routerLink="/add-person/d/{{filmid}}">
+              Or add new person
+            </button>
+          </div>
+          <button type="submit" class="submit-review btn btn-secondary btn-sm">Submit</button>
+          <button type="button" class="cancel-review btn btn-danger btn-sm" (click)="addDirectorForm= !addDirectorForm">Cancel</button>
+        </div>
+      </form>
+
+      <table class="col">
+        <tbody *ngFor="let director of directorData" class="table my-4">
+          <tr>
+            <td>
+              <div class="circular-portrait clickable">
+                <img src="../../assets/images/persons/{{director.directorImage}}" routerLink="/person-page/{{director.personId}}" />
+              </div>
+            </td>
+            <td class="text-left align-middle">
+              <div class="list-inline-item title-p pl-3" routerLink="/person-page/{{director.personId}}">{{director.directorName}}</div>
+            </td>
+            <td class="align-middle">
+              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(d)"></fa>
+            </td>
+
+            <!-- Modal for removing directors -->
+            <ng-template #d let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to remove
+                  <strong>{{director.directorName}}</strong> from
+                  <strong>{{film.title}}</strong>?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="removePerson(director.personId, 'directorId', 'films_directors')" (click)="c('Close click')">Remove</button>
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
+              </div>
+            </ng-template>
+        </tbody>
+      </table>
+      <!--  Actor area -->
+      <div class="d-inline-flex align-items-baseline pt-4 mb-3">
+        <h6 class="headliner pr-5">
+          <span class="underliner-colored">Starring</span>
+        </h6>
+        <p *ngIf="globalservice.user" class="sub-linker" (click)="addActorForm = !addActorForm">
+          <span>Add an Actor</span> > </p>
+      </div>
+      <form *ngIf="addActorForm" #a="ngForm" (ngSubmit)="submitPerson(a.value, 'actorId', 'films_actors')" class="bg-secondary p-2 mb-2">
+        <div class="add-content-form">
+          <div class="form-group">
+            <label for="character">Character Name in this movie</label>
+            <input type="text" id="character" name="character" class="form-control" placeholder="Character Name" ngModel>
+          </div>
+          <div class="form-group">
+            <label for="isMainCharacter">Is a Main Character</label>
+            <select type="select" class="form-control" name="isMainCharacter" id="isMainCharacter" ngModel>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="mr-2" for="actorId">Select a person from the database</label>
+            <select class="form-control" id="actorId" name="actorId" ngModel>
+              <option *ngFor="let person of allPersons" value="{{person.id}}">{{person.firstName}} {{person.lastName}}
+              </option>
+            </select>
+            <button type="button" class="btn btn-primary mt-2" routerLink="/add-person/a/{{filmid}}">
+              Or add new person
+            </button>
+          </div>
+          <button type="submit" class="submit-review btn btn-secondary btn-sm">Submit</button>
+          <button type="button" class="cancel-review btn btn-danger btn-sm" (click)="addActorForm= !addActorForm">Cancel</button>
+        </div>
+      </form>
+      <table class="col">
+        <tbody *ngFor="let actor of actorData" class="table my-4">
+          <tr>
+            <td>
+              <div>
+                <div [ngClass]="actor.isMainCharacter ? 'highlight-character' : 'circular-portrait'">
+                  <img class="clickable" src="../../assets/images/persons/{{actor.imagePath}}" routerLink="/person-page/{{actor.actorId}}"
+                  />
+                </div>
+
+              </div>
+            </td>
+            <td class="text-left align-middle">
+              <div class="list-inline-item title-p" [ngClass]="actor.isMainCharacter ? 'highlight-person' : ''" routerLink="/person-page/{{actor.actorId}}">{{actor.name}}</div>
+              <p>as
+                <span *ngIf="!globalservice.user">{{actor.character}}</span>
+                <inline-editor *ngIf="globalservice.user" class="list-inline-item" type="text" [(ngModel)]="actor.character" (onSave)="updateCharacter($event, actor.actorId, actor.isMainCharacter)"></inline-editor>
+              </p>
+            </td>
+            <td class="align-middle">
+              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(a)"></fa>
+            </td>
+          </tr>
+          <ng-template #a let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title"></h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to remove
+                <strong>{{actor.name}}({{actor.character}})</strong> from
+                <strong>{{film.title}}</strong>?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="removePerson(actor.actorId, 'actorId', 'films_actors')" (click)="c('Close click')">Remove</button>
+              <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
+            </div>
+          </ng-template>
+        </tbody>
+      </table>
+
+      <!-- Trailer -->
+      <div class="pt-5 mb-3">
+        <h6 class="headliner pr-5">
+          <span class="underliner-colored">Official Trailer</span>
+        </h6>
+      </div>
+      <div *ngIf="film.youtubeUrl" class="embed-responsive embed-responsive-16by9 mb-2">
+        <iframe width="560" height="315" [src]="film.youtubeUrl | safeurl" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <p class="linkBox">
+        <inline-editor *ngIf="globalservice.user" type="text" empty="Add a Youtube URL" [(ngModel)]="film.youtubeUrl" (onSave)="saveEditable($event, 'films', 'youtubeUrl')"></inline-editor>
+      </p>
+
+    </div>
+  </div>
+</div>

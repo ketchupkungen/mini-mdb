@@ -1,0 +1,65 @@
+@import '../../../styles.scss';
+
+.navigation-sub, .logo-sm, .logo-mini {
+  cursor: pointer;
+  @include ease-transition;
+}
+
+.navigation-sub:hover {
+  color: $blue;
+  cursor: pointer;
+}
+
+.nav-linkage {
+  margin-top: 2.6em;
+}
+
+.desktop-navigation {
+
+  .logo-sm {
+    max-height: 42px;
+  }
+
+  .user-screen {
+    border-radius: 28px;
+    padding: 7px 0;
+    font-size: 12px;
+    min-height: 46px;
+    background-color: $cloud;
+    opacity: 0.7;
+  }
+
+  .user {
+    font-weight: 600;
+  }
+
+  .user-screen ul {
+    overflow: hidden;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .user-screen li {
+    float: left;
+  }
+
+  .user-screen li a {
+    display: block;
+    color: #808080;
+  }
+}
+
+.mobile-navigation {
+  .logo-mini {
+    max-height: 21px;
+  }
+
+  .title-mini {
+    max-height: 40px;
+    margin-top: -5px;
+  }
+
+  .hamburger{
+    max-height: 18px;
+  }
+}

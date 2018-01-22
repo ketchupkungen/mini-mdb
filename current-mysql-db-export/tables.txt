@@ -1,0 +1,61 @@
+﻿##########################
+films
+
+id
+versionId
+changerId
+title
+year
+genre // SET ('Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Horror', 'Musical', 'Romantic', 'Science Fiction', 'Thriller', 'War', 'Western')
+plot //  imdb short bio
+imagePath
+timeCreated // TIMESTAMP (Default value: CURRENT_TIMESTAMP)
+##########################
+
+
+##########################
+persons
+
+id
+versionId
+changerId
+firstName
+lastName
+birth
+death
+gender
+nationality // land (birthplace)
+miniBio //  ta text fråm IMDB shortbio
+imagePath
+timeCreated
+##########################
+
+
+##########################
+reviews
+
+id
+versionId
+changerId
+source
+author
+link
+rating // 1-10
+comment
+timeCreated
+##########################
+
+
+##########################
+users
+
+id
+versionId // funkar även som "warnings" efter 2 el 3 blir dom banned
+changerId
+firstName
+lastName
+email // also used as username
+password
+phone // for optional sms notification
+role // enum ”user”, "banned" or ”admin”
+timeCreated

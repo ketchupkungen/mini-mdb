@@ -1,0 +1,141 @@
+<div class="hidden-md-up">
+  <img class="mdb-img" src="/assets/images/persons/{{personData.imagePath}}">
+  <span class="upload-btn">
+    <app-upload-picture [person]="personData"></app-upload-picture>
+  </span>
+</div>
+
+<div class="container-fluid pt-2 pt-sm-5" [@fadeIn-2]>
+  <div class="row">
+
+    <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-4 flex-last flex-md-first">
+      <img class="img-fluid hidden-sm-down mdb-img" src="/assets/images/persons/{{personData.imagePath}}" [@fadeIn-1]>
+      <span class="upload-btn hidden-sm-down">
+        <app-upload-picture [person]="personData"></app-upload-picture>
+      </span>
+    </div>
+
+    <div class="offset-xs-1 col-xs-10 col-md-5 col-lg-4 mt-4 mt-sm-0" [@fadeIn-2]>
+
+      <h1 class="app-headline">
+        <span *ngIf="!globalservice.user">{{personData.firstName}} {{personData.lastName}}</span>
+        <inline-editor *ngIf="globalservice.user" type="text" empty="Add firstName" [(ngModel)]="personData.firstName" (onSave)="saveEditable($event, 'persons', 'firstName')"></inline-editor>
+        <inline-editor *ngIf="globalservice.user" type="text" empty="Add lastname" [(ngModel)]="personData.lastName" (onSave)="saveEditable($event, 'persons', 'lastName')"></inline-editor>
+      </h1>
+
+      <table class="table table-bordered my-4">
+        <tbody>
+          <tr>
+            <td>
+              <span class="d-inline-flex justify-content-center">
+                <span *ngIf="!globalservice.user">
+                  <span class="pr-2">Nationality:</span>
+                  <strong>{{personData.nationality}}</strong>
+                </span>
+                <inline-editor *ngIf="globalservice.user" empty="{{personData.nationality}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'nationality')"
+                  [options]="countrySelectOptions" value="valor"></inline-editor>
+              </span>
+            </td>
+            <td>
+              <span class="d-inline-flex justify-content-center">
+                <span *ngIf="!globalservice.user">
+                  <span class="pr-2">Gender:</span>
+                  <strong>{{personData.gender}}</strong>
+                </span>
+                <inline-editor *ngIf="globalservice.user" empty="{{personData.gender}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'gender')"
+                  [options]="genderSelectOptions" value="valor"></inline-editor>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="d-inline-flex justify-content-center">
+                <span class="pr-2">Born:</span>
+                <span *ngIf="!globalservice.user">
+                  {{personData.birth}}</span>
+                <inline-editor *ngIf="globalservice.user" empty="{{personData.birth}} 2000-01-01" type="date" [(ngModel)]="personData.birth"
+                  (onSave)="saveEditable($event, 'persons', 'birth')" value="valor"></inline-editor>
+              </span>
+            </td>
+            <td>
+
+              <div *ngIf="!personData.death">
+                <span class="d-inline-flex justify-content-center">
+                  <span class="pr-2">Age: {{personData.age}}</span>
+                </span>
+              </div>
+
+              <div *ngIf="personData.death">
+                <span class="d-inline-flex justify-content-center">
+                  <span *ngIf="!globalservice.user">
+                    <span class="pr-2">Death:</span>{{personData.death}}</span>
+                  <inline-editor *ngIf="globalservice.user" empty="{{personData.death}} v" type="date" [(ngModel)]="personData.death" (onSave)="saveEditable($event, 'persons', 'death')"
+                    value="valor"></inline-editor>
+                </span>
+              </div>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        <span *ngIf="!globalservice.user">{{personData.miniBio}}</span>
+        <inline-editor *ngIf="globalservice.user" empty="Add bio text" type="textarea" [(ngModel)]="personData.miniBio" (onSave)="saveEditable($event, 'persons', 'miniBio')"></inline-editor>
+      </p>
+
+      <!--  director area -->
+      <div *ngIf="directorData.length">
+        <div class="d-inline-flex align-items-baseline pt-4 mb-3">
+          <h6 class="headliner pr-4">
+            <span class="underliner-colored">Has Directed</span>
+          </h6>
+        </div>
+
+        <table class="col">
+          <tbody *ngFor="let director of directorData" class="table my-4">
+            <tr>
+              <td>
+                <div class="circular-portrait clickable">
+                  <img src="../../assets/images/films/{{director.imagePath}}" routerLink="/film-page/{{director.filmId}}" />
+                </div>
+              </td>
+              <td class="align-middle">
+                <div class="list-inline-item title-p" routerLink="/film-page/{{director.filmId}}">{{director.title}}</div>
+              </td>
+              <td class="align-middle">
+                <div class="title-p">{{director.year}}</div>
+              </td>
+          </tbody>
+        </table>
+      </div>
+
+      <!--  acted area -->
+      <div *ngIf="actorData.length">
+        <div class="d-inline-flex align-items-baseline pt-4 mb-3">
+          <h6 class="headliner pr-4">
+            <span class="underliner-colored">Has Acted in</span>
+          </h6>
+        </div>
+
+        <table class="col">
+          <tbody *ngFor="let actor of actorData" class="table my-4">
+            <tr>
+              <td>
+                <div class="circular-portrait">
+                  <img class="clickable" src="/assets/images/films/{{actor.imagePath}}" routerLink="/film-page/{{actor.filmId}}" />
+                </div>
+              </td>
+              <td class="align-middle">
+                <div class="list-inline-item title-p" routerLink="/film-page/{{actor.filmId}}">{{actor.title}}</div>
+              </td>
+              <td class="align-middle">
+                <div class="title-p">
+                  <span>as</span> {{actor.character}}</div>
+              </td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

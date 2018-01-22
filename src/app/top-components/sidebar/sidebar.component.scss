@@ -1,0 +1,177 @@
+@import '../../../styles.scss';
+
+.left {
+  background: $dark-grey;
+  left: 0;
+  width: 80%;
+  -webkit-box-shadow: 2px 0 1px -2px #888;
+
+  h6 {
+    color: $white;
+    padding-bottom: 1em;
+    font-size: 20px;
+  }
+
+  .line-break {
+    width: 80%;
+    margin: 0 auto 1em;
+    height: 4px;
+    background: #eceeef;
+  }
+}
+
+.right {
+  background: transparent;
+  right: 0;
+  width: 20%;
+}
+
+.username {
+    display: inline;
+    border-radius: 15px;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+    background: white;
+    margin-bottom: 2em;
+}
+
+/* The navigation menu links */
+.mdbsidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 65px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.mdbsidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+/* Position and style the close button (top right corner) */
+.mdbsidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .mdbsidenav {padding-top: 15px;}
+    .mdbsidenav a {font-size: 18px;}
+}
+.openButton {
+    font-size: 50px;
+}
+.navLine{
+    width: 100%;
+    height: 1px;
+    background-color: white;
+}
+#mySidenav>:last-child {
+    color: white;
+    font-size: 15px;
+}
+
+.side {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
+
+
+
+:host {
+  color: #fff;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  z-index: 100;
+  // font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+ul {
+  font-size: 20px;
+  line-height: 3;
+  font-weight: 400;
+  padding-top: 10px;
+  padding-left: 0px;
+  list-style: none;
+}
+
+li {
+    padding-left: 10%;
+    cursor: pointer;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color:  #D3D3D3;
+}
+
+a:active {
+  color: #FF1493;
+}
+
+.user-screen {
+    border-radius: 50px;
+    padding: 0px;
+    width: 80%;
+    margin-bottom: 1em;
+    background-color: white;
+}
+
+.user-screen ul {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.user-screen li {
+    float: left;
+    padding: 0;
+    padding-left: 0.5em;
+}
+
+.user-screen li a {
+    display: block;
+    color: #000;
+    margin-left: 3px;
+    font-size: 12px;
+}
+
+.user-screen li a:hover {
+    color:  #D3D3D3;
+}
+
+.user-screen li a:active {
+    color: #FF1493;
+}
+
+#sidebar-toggle {
+    color: $white;
+    width: 40px;
+    height: 50px;
+    right: 10px;
+    top: 0;
+    font-size: 30px;
+}

@@ -1,0 +1,65 @@
+<div class="container-fluid pt-2 pt-sm-5" [@fadeIn-2]>
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="offset-md-1 offset-lg-2 col-md-2 col-lg-1">
+          <img class="img-fluid list-title hidden-sm-down" src="/assets/images/list-act.png">
+        </div>
+
+        <div class="offset-md-1 col-md-6">
+          <h6 class="headliner pr-4 hidden-md-up mt-3">
+            <span class="underliner-colored">
+              All Actors
+            </span>
+          </h6>
+
+          <p class="sub-linker">Sort By:
+            <span (click)="setOrder('name')">Name</span> |
+            <span (click)="setOrder('nationality')">Nationality</span> |
+            <span (click)="setOrder('gender')">Gender</span> |
+          </p>
+
+          <table>
+            <tbody *ngFor="let item of mySqlData" class="table my-4">
+              <tr class="my-3">
+
+                <td class="align-middle">
+                  <div class="circular-list-portrait hidden-md-up">
+                    <img class="clickable" src="/assets/images/persons/{{item.imagePath}}"  onerror="this.src='../../assets/images/films/default.png';" routerLink="/person-page/{{item.id}}" />
+
+                  </div>
+                  <div class="circular-list-desktop-portrait hidden-sm-down">
+                    <img class="clickable" src="assets/images/persons/{{item.imagePath}}"  onerror="this.src='../../assets/images/films/default.png';" routerLink="/person-page/{{item.id}}" />
+
+                  </div>
+                </td>
+
+                <td class="list-inline-item">
+
+                  <div class="title-list-p" routerLink="/film-page/{{item.id}}">
+                    <strong>{{item.name}}
+                      </strong>
+                  </div>
+
+                  <div class="inline mini-p">
+                    <span>Gender: {{item.gender}} </span>
+                    <span *ngIf="!item.gender">Unknown</span>
+                  </div>
+
+                  <div class="inline mini-p">
+                    <span>Nationality: {{item.nationality}} </span>
+                    <span *ngIf="!item.nationality">Unknown</span>
+                  </div>
+
+                  <div class="inline mini-p">
+                    <span>Known for: {{item.films | truncate: 3}}</span>
+                    <span *ngIf="!item.films">Unknown</span>
+                  </div>
+                </td>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+  </div>
+</div>

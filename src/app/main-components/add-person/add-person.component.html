@@ -1,0 +1,63 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 mb-5">
+      <h3>ADD NEW PERSON</h3>
+      <hr>
+
+      <div class="row">
+        <div class="col">
+          <form #np="ngForm" (ngSubmit)="addPerson(np.value)">
+
+            <div class="form-group">
+              <label for="first">Name:</label>
+              <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" ngModel>
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" ngModel>
+            </div>
+
+            <div class="form-group">
+              <label>Gender</label>
+              <select type="select" class="form-control" name="gender" id="gender" ngModel>
+                <option disabled selected value> -- select an option -- </option>
+                <option value="female">Female</option>
+                <option value="female">Male</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Nationality:</label>
+              <select type="select" class="form-control" name="nationality" id="nationality" ngModel>
+                <option disabled selected value> -- select an option -- </option>
+                <option *ngFor="let country of countries">{{country}}</option>
+              </select>
+            </div>
+
+            <div *ngIf="occupationType === 'a'" class="form-group">
+              <label>Character Name in this movie</label>
+              <input type="text" class="form-control" name="character" id="character" placeholder="Character Name" ngModel>
+            </div>
+
+            <div *ngIf="occupationType === 'a'" class="form-group">
+              <label for="isMainCharacter">Is a Main Character</label>
+              <select type="select" class="form-control" name="isMainCharacter" id="isMainCharacter" ngModel>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+
+            <button type="submit" class="submit-review btn btn-secondary btn-sm">
+                <span>
+                Submit
+              </span>
+            </button>
+            <button type="button" class="cancel-review btn btn-danger btn-sm" routerLink="/film-page/{{filmid}}">Cancel</button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

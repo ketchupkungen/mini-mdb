@@ -1,0 +1,49 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+      <h3>EDIT YOUR PROFILE</h3>
+      <hr>
+
+      <h3 *ngIf="globalservice.user && profileUpdated === true" class="profile-updated-message">PROFILE UPDATED!</h3>
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <form (ngSubmit)="updateProfile()" *ngIf="globalservice.user">
+
+            <div class="form-group">
+              <input type="text" placeholder="FIRST NAME" class="form-control" name="firstName"
+                      [(ngModel)]="userData.firstName">
+            </div>
+
+            <div class="form-group">
+              <input type="text" placeholder="LAST NAME" class="form-control" name="lastName"
+                      [(ngModel)]="userData.lastName">
+            </div>
+
+            <div class="form-group">
+              <input type="tel" placeholder="PHONE NUMBER" class="form-control" name="phone"
+                      [(ngModel)]="userData.phone">
+            </div>
+
+            <div class="form-group">
+              <input type="email" placeholder="EMAIL" class="form-control" name="email"
+                      [(ngModel)]="userData.email">
+            </div>
+
+            <div class="form-group">
+              <input type="password" placeholder="PASSWORD" class="form-control" name="password"
+                      [(ngModel)]="userData.password">
+            </div>
+
+            <button type="submit" class="btn btn-secondary btn-sm" value="Submit Form">Submit</button>
+
+          </form>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

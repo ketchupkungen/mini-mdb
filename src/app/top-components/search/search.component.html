@@ -1,0 +1,49 @@
+<div class="searchArea">
+    <input type="text" class="form-control" placeholder="&#xF002;   Search" style="font-family:Arial, FontAwesome" (input)="onKey($event)" (blur)="onBlur()" (focus)="onFocus()">
+    <div class="searchDropdown" [ngClass]="{'d-none': hidden}" (blur)="onBlur()" (mousedown)="onFocus()">
+      <div *ngIf="hasResults" class="container-fluid py-2">
+        <section *ngIf="actors.length">
+          <h6>Actors</h6>
+          <a *ngFor="let item of actors" class="row align-items-center" href="/person-page/{{item.id}}">
+            <div class="col-2">
+              <div class="img-wrapper">
+                <img src="/assets/images/persons/{{item.imagePath}}">
+              </div>
+            </div>
+            <div class="col">
+              <p>{{item.firstName}} {{item.lastName}} ({{item.birth | date: 'yyyy'}})</p>
+            </div>
+          </a>
+        </section>
+        <section *ngIf="directors.length">
+          <h6>Directors</h6>
+          <a *ngFor="let item of directors" class="row align-items-center" href="/person-page/{{item.id}}">
+            <div class="col-2">
+              <div class="img-wrapper">
+                <img src="/assets/images/persons/{{item.imagePath}}">
+              </div>
+            </div>
+            <div class="col">
+              <p>{{item.firstName}} {{item.lastName}} ({{item.birth | date: 'yyyy'}})</p>
+            </div>
+          </a>
+        </section>
+        <section *ngIf="films.length">
+          <h4>Films</h4>
+          <a *ngFor="let item of films" class="row align-items-center" href="/film-page/{{item.id}}">
+            <div class="col-2">
+              <div class="img-wrapper">
+                <img src="/assets/images/films/{{item.imagePath}}">
+              </div>
+            </div>
+            <div class="col">{{item.title}}</div>
+          </a>
+        </section>
+      </div>
+
+      <div *ngIf="!hasResults" class="container-fluid py-2">
+        <p class="mb-0">No result(s) found.</p>
+      </div>
+
+    </div>
+</div>

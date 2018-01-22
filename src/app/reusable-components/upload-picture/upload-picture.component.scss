@@ -1,0 +1,26 @@
+@import '../../../styles.scss';
+
+.uploader-area {
+  cursor: pointer;
+  background: $white;
+  border: 1px solide $black;
+  width: 130px;
+  padding: .4em 0;
+  text-align: center;
+  border: 1px solid $black;
+
+  span {
+    font-size: 11px;
+    color: $black;
+  }
+
+  .image-icon {
+    width: 18px;
+  }
+
+}
+
+.uploader-area:hover {
+  background: $mid-grey;
+  @include ease-transition;
+}

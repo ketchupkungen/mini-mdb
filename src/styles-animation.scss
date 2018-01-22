@@ -1,0 +1,45 @@
+@mixin keyframes($type) {
+  @-webkit-keyframes #{$type} {
+    @content;
+  }
+  @-moz-keyframes #{$type} {
+    @content;
+  }
+  @-o-keyframes #{$type} {
+    @content;
+  }
+  @keyframes #{$type} {
+    @content;
+  }
+}
+
+.line-break {
+  height: 2px;
+  @include keyframes(line-break) {
+    0% {
+      width: 0%;
+      background: #63C8DD;
+    }
+    100% {
+      width: 100%;
+      background: #000;
+    }
+  }
+  -webkit-animation: line-break 700ms ease-in-out 200ms 1 normal forwards;
+  width: 100%;
+}
+
+.list-title {
+  @include keyframes(slideUp) {
+    0% {
+      animation-timing-function: ease-in-out;
+      transform: translateY(3%);
+    }
+
+    100% {
+      animation-timing-function: ease-in;
+      transform: translateY(0);
+    }
+  }
+  -webkit-animation: slideUp 600ms ease-in-out;
+}

@@ -1,0 +1,48 @@
+@import '../../../styles.scss';
+
+.social {
+  background: $black;
+
+  p {
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  fa {
+    font-size: 16px;
+    color: $white;
+    padding-left: 1em;
+    cursor: pointer;
+  }
+
+  fa:hover {
+    color: $dark-grey;
+    @include ease-transition;
+  }
+}
+
+.main-footer {
+  background: $blue;
+
+  .white-links {
+    display: block;
+    color: $white;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+
+  .logo {
+    width: 146px;
+    margin: 0;
+    margin-bottom: .6em;
+  }
+
+  span {
+    display: block;
+    color: $black;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+}

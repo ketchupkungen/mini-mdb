@@ -1,0 +1,61 @@
+<div class="left side">
+	<ul>
+		<li>
+			<div class="row">
+				<div (click)="toggleMenu()" class="offset-9 col-1">
+			  	<h6 id="sidebar-toggle">
+						<i class="fa fa-times"></i>
+					</h6>
+	  		</div>
+	  	</div>
+	  	<div *ngIf="globalservice.user" class="row">
+		  	<div class="col-12">
+		  		<div class="user-screen">
+		        <ul>
+		          <li>
+		            <a (click)="toggleMenu()" class="nav-link" routerLink="/user-panel"><strong>{{globalservice.user.firstName}}</strong></a>
+		          </li>
+		        </ul>
+		    	</div>
+		    </div>
+	    </div>
+	  </li>
+	  <li>
+	  	<h6 (click)="toggleMenu()" routerLink="lists/list-all-films">All films</h6>
+	  </li>
+	  <li>
+	  	<h6 (click)="toggleMenu()" routerLink="lists/list-all-actors">All Actors</h6>
+	  </li>
+	  <li>
+	  	<h6 (click)="toggleMenu()" routerLink="lists/list-all-directors">All Directors</h6>
+	  </li>
+	  <li>
+	  	<h6 (click)="toggleMenu()" routerLink="lists/list-top-10">Top 10</h6>
+	  </li>
+	  <li>
+	  	<h6 (click)="toggleMenu()" routerLink="lists/list-latest-reviews">Latest Reviews</h6>
+	  </li>
+
+	 <div class="line-break"></div>
+
+	  <li *ngIf="globalservice.user && globalservice.user.role === 'admin'">
+      <h6 (click)="toggleMenu()" routerLink="admin/admin-panel">Admin Page</h6>
+    </li>
+
+	  <!--<li *ngIf="globalservice.user">
+	  	<a (click)="toggleMenu()" routerLink="/user-panel">EDIT SETTINGS</a>
+		</li>-->
+		<li *ngIf="globalservice.user">
+      <h6 (click)="toggleMenu()" (click)="sidebar.logout()">Log Out</h6>
+    </li>
+		<li *ngIf="!globalservice.user">
+	  	<a (click)="toggleMenu()" routerLink="login">Log In</a>
+		</li>
+		<li *ngIf="!globalservice.user">
+	  	<a (click)="toggleMenu()" routerLink="register">Register</a>
+		</li>
+	</ul>
+</div>
+
+<div (click)="toggleMenu()" class="right side">
+</div>

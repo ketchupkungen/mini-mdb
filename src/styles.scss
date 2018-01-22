@@ -1,0 +1,348 @@
+@import '/styles-animation.scss';
+
+$default-font: 'Open Sans', sans-serif;
+$headline-font: 'Source Sans Pro', sans-serif;
+
+
+//==  Colors
+$black: #000000;
+$dark-grey: #606060;
+$mid-grey: #E6E4E4;
+$soft-grey: #95989A;
+$light-grey: #EBE9EB;
+$red: #E33D3D;
+$blue: #63C8DD;
+$beige: #EEEFE1;
+$cloud: #EDEBEB;
+$white: #FAFAFA;
+
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $default-font;
+  background: $white;
+  color: $dark-grey;
+  margin: 0;
+}
+
+.form-group {
+  input {
+    background-color: $cloud;
+    border: none;
+    font-size: 13px;
+    padding: 16px;
+  }
+
+  input,
+  select,
+  textarea {
+    color: $soft-grey;
+  }
+}
+
+// Temporary solution
+/*.list-title {
+  height: 810px;
+  width: 100px;
+}*/
+
+.card {
+  background: none;
+}
+
+.footer-fix {
+  min-height: 90vh;
+}
+
+.active {
+  outline: none;
+  color: $soft-grey;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background: $blue;
+  border: none;
+}
+
+.btn-secondary {
+  background: $dark-grey;
+  color: $white;
+  border: none;
+}
+
+.btn-danger {
+  background: $red;
+  border: none;
+}
+
+.bg-secondary {
+  background: $light-grey;
+}
+
+// //== Mixins
+@mixin ease-transition() {
+  -webkit-transition: .5s ease;
+  -moz-transition: .5s ease;
+  -o-transition: .5s ease;
+  transition: .5s ease;
+}
+
+a, img, .sub-linker, .title-p {
+  border: 0;
+  outline: none;
+}
+
+h1, .display-4, h6, .list-headline {
+  outline: none;
+  color: $black;
+  font-size: 30px;
+  font-family: $headline-font;
+  text-transform: uppercase;
+}
+
+h4 {
+  outline: none;
+  color: $black;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+h6 {
+  font-size: 21px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.title-p {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.front-p {
+  font-size: 13px;
+  line-height: 22px;
+}
+
+.title-list-p {
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: .3em;
+  font-weight: 600;
+  color: black;
+}
+
+.mini-p {
+  font-size: 12px;
+  line-height: 24px;
+}
+
+a {
+  color: $dark-grey;
+}
+
+.stars {
+  font-style: normal;
+  color: $black;
+  font-size: 13px;
+  margin-left: 2px;
+}
+
+.mdb-img {
+  width: 100%;
+}
+
+.search {
+  width: 100%;
+}
+
+.headliner {
+  font-size: 19px;
+}
+
+.display-4 {
+  font-size: 44px;
+}
+
+.underliner {
+  border-bottom: 2px solid $black;
+  padding-bottom: 6px;
+  display: inline-block;
+}
+
+.underliner-colored {
+  border-bottom: 2px solid $blue;
+  padding-bottom: 6px;
+  display: inline-block;
+}
+
+.fat-title {
+  outline: none;
+  color: $black;
+  font-size: 20px;
+  font-family: $headline-font;
+  text-transform: uppercase;
+  padding: 4px;
+
+  span {
+    background: $white; // margin-top: -40px;
+    padding: 0 6px;
+    font-size: 16px;
+  }
+}
+
+.sub-linker, .title-p, .clickable, button {
+  cursor: pointer;
+}
+
+.sub-linker > span:hover {
+  @include ease-transition;
+  color: $blue;
+  text-decoration: underline;
+}
+
+.add-content-form {
+  padding: 0.5em;
+  padding: 1em 1em;
+}
+
+.circular-portrait {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+
+}
+
+.highlight-character {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid $blue;
+}
+
+.highlight-person {
+  border-bottom: 2px solid $blue;
+}
+
+.circular-list-portrait {
+  position: relative;
+  width: 94px;
+  height: 94px;
+  overflow: hidden;
+  border-radius: 50%;
+
+}
+
+.normal-list-portrait {
+  position: relative;
+  width: 280px;
+  overflow: hidden;
+
+}
+
+
+.circular-list-desktop-portrait {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+
+}
+
+.circular-portrait img,
+.circular-list-portrait img,
+.normal-list-portrait img,
+.circular-list-desktop-portrait img,
+.highlight-character img {
+  width: 100%;
+  height: auto;
+}
+
+.review-img {
+  width: 100%;
+}
+
+.upload-btn {
+  position: relative;
+  top: -80px;
+  left: 30px;
+}
+
+
+
+
+// INLINE EDITOR
+.ng-untouched {
+  cursor: pointer;
+}
+
+.c-inline-editor {
+  display: inline-block;
+
+  .btn {
+    display: inline-block;
+    line-height: 1.25;
+    text-align: center;
+    user-select: none;
+    padding: .3rem .7rem;
+    margin-top: .5em;
+
+    .btn-danger {
+      background: $red;
+    }
+
+    .btn-primary {
+      background: $blue;
+    }
+  }
+}
+
+.c-inline-editor.inlineEditForm input,
+.c-inline-editor.select {
+  width: auto;
+  display: inline;
+}
+
+.c-inline-editor.inline-editor-button-group {
+  display: inline-block;
+}
+
+.c-inline-editor.editInvalid {
+  color: #a94442;
+  margin-bottom: 0;
+}
+
+.c-inline-editor.error {
+  border-color: #a94442;
+}
+
+.list-text {
+  margin: 0;
+}
+
+.table td {
+  border: 0;
+}
+
+.table tr {
+  border: 0;
+
+  border-bottom: 1px solid $cloud;
+}
+
+.table-bordered td, .table-bordered th {
+  border: 2px solid $soft-grey;
+  font-size: 12px;
+  text-transform: uppercase;
+}

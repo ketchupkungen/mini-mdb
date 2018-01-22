@@ -1,0 +1,73 @@
+  <div class="container-fluid" style="z-index: 2;">
+
+    <div class="row hidden-sm-down pt-5 mb-3 desktop-navigation" >
+      <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-5 d-flex justify-content-start align-items-center">
+        <img class="img-fluid logo-sm pr-4" routerLink="/" (click)="homepage = true" src="/assets/images/logo.png">
+        <app-search class="search"></app-search>
+      </div>
+
+      <div class="col-md-5 col-lg-4 col-xl-3">
+        <div class="user-screen d-flex justify-content-center">
+          <div *ngIf="globalservice.user && globalservice.user.firstName">
+            <span class="user"><a class="nav-link" (click)="!homepage" routerLink="/user-panel">{{globalservice.user.firstName}}</a></span>
+          </div>
+          <div *ngIf="globalservice.user && !globalservice.user.firstName">
+            <a class="nav-link" (click)="!homepage" routerLink="/user-panel">Username</a>
+          </div>
+          <div *ngIf="!globalservice.user">
+            <a class="nav-link" (click)="!homepage" routerLink="login">Log In</a>
+          </div>
+          <div *ngIf="!globalservice.user">
+            <a class="nav-link" (click)="!homepage" routerLink="register">Register</a>
+          </div>
+          <div *ngIf="globalservice.user && globalservice.user.role === 'admin'">
+            <a class="nav-link" (click)="!homepage" routerLink="admin/admin-panel">Admin Page</a>
+          </div>
+          <div *ngIf="globalservice.user">
+            <a class="nav-link" (click)="header.logout()">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row hidden-sm-down nav-linkage">
+      <div class="offset-md-1 offset-lg-2 col-md-10 col-lg-8 d-flex justify-content-between">
+        <h4 class="navigation-sub" routerLink="lists/list-all-films" (click)="homepage = false"
+          routerLinkActive="active">All Movies</h4>
+        <h4 class="navigation-sub" routerLink="lists/list-all-directors" (click)="homepage = false"
+          routerLinkActive="active">All Directors</h4>
+        <h4 class="navigation-sub" routerLink="lists/list-all-actors" (click)="homepage = false"
+          routerLinkActive="active">All Actors</h4>
+        <h4 class="navigation-sub" routerLink="lists/list-latest-reviews" (click)="homepage = false"
+          routerLinkActive="active">Latest Reviews</h4>
+        <h4 class="navigation-sub" routerLink="lists/list-top-10" (click)="homepage = false"
+          routerLinkActive="active">Top 10 Lists</h4>
+      </div>
+    </div>
+
+    <div class="row hidden-sm-down mt-3">
+      <div class="offset-md-1 offset-lg-2 col-md-10 col-lg-8 d-flex justify-content-between">
+        <div class="line-break m-auto">
+        </div>
+      </div>
+    </div>
+
+    <div class="row hidden-md-up mt-3 mb-3">
+      <div class="col-12 mobile-navigation d-flex justify-content-between align-items-center">
+        <img class="img-fluid logo-mini pl-3" routerLink="/" src="/assets/images/logo.png">
+        <img class="img-fluid title-mini pr-3" routerLink="/" src="/assets/images/mdb-title.png">
+        <img class="img-fluid hamburger pr-3"
+          (click)="toggleMenu()"
+          routerLink="/"
+          src="/assets/images/hamburger.svg">
+      </div>
+    </div>
+
+    <div class="row hidden-md-up">
+          <app-search class="search"></app-search>
+    </div>
+  </div>
+
+
+<!-- Selector for the sidebar toggle -->
+<app-sidebar [@slideInOut]="menuState" (close)="toggleMenu($event)"></app-sidebar>

@@ -1,0 +1,89 @@
+@import '../../../styles.scss';
+
+.bg-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 700px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  mix-blend-mode: multiply;
+
+  @include keyframes(fadeIn) {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  -webkit-animation: fadeIn 600ms ease-in-out;
+}
+
+.front-area {
+  min-height: 460px;
+  color: $black;
+
+  .text-area {
+    background: $cloud;
+    opacity: 0.8;
+    border-radius: 5px;
+  }
+}
+
+.activity {
+  background: $cloud;
+
+  .film-img {
+    border: 10px solid $white;
+    max-height: 270px;
+  }
+}
+
+.biglogo {
+  min-width: 300px; // margin: 0;
+}
+
+.top-table {
+  .table td {
+    border: 0;
+    margin-bottom: 1em;
+  }
+}
+
+.news-area {
+  background: $cloud;
+  // padding: 30px;
+
+    .header {
+      outline: none;
+      color: $black;
+      font-size: 16px;
+      font-family: $headline-font;
+      text-transform: uppercase;
+    }
+
+    img {
+      max-width: 140px;
+      max-height: 140px;
+    }
+
+    .date-format {
+      color: $blue;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    .n-text, a {
+      font-size: 12px;
+      color: $black;
+    }
+
+    a {
+      font-weight: 600;
+    }
+}

@@ -1,0 +1,50 @@
+<div class="container-fluid pt-2 pt-sm-5" [@fadeIn-2]>
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="offset-md-1 offset-lg-2 col-md-2 col-lg-1">
+          <img class="img-fluid list-title hidden-sm-down" src="/assets/images/list-latest.png">
+        </div>
+
+        <div class="col-md-7">
+          <h6 class="headliner hidden-md-up pr-4 mt-3">
+            <span class="underliner-colored">
+              latest Reviews
+            </span>
+          </h6>
+          <table>
+            <tbody *ngFor="let item of mySqlData" class="table my-4">
+              <tr class="my-5">
+                <td class="align-top">
+                  <div class="normal-list-portrait hidden-sm-down clickable">
+                    <img src="/assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';" routerLink="/film-page/{{item.id}}" />
+                  </div>
+                </td>
+
+                <td class="list-inline-item">
+                  <div class="title-list-p" routerLink="/film-page/{{item.id}}">
+                    <strong>{{item.title}}
+                      </strong>
+                  </div>
+
+                  <div class="mini-p">Created: {{item.timeCreated | date}}</div>
+
+                  <div class="mini-p">
+
+                    <span>Reviewer: {{item.username}}</span>
+                  </div>
+                </td>
+                <td class="list-inline-item">
+
+                  <div class="inline mini-p">
+                    <span>{{item.textbody}}</span>
+                  </div>
+                </td>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+  </div>
+</div>

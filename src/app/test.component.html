@@ -1,0 +1,40 @@
+<h3> TEST COMPONENT</h3>
+<br><br>
+<h1>{{filmgenre}}</h1>
+<div *ngFor="let item of mySqlData">
+
+  <h3>"Film Title": <h1><inline-editor type="text"
+    [(ngModel)]="item.title" (onSave)="saveEditable($event)"
+  ></inline-editor></h1></h3>
+
+  <h3>"Film Plot": <h5><inline-editor type="textarea"
+    [(ngModel)]="item.plot" (onSave)="saveEditable($event)"
+  ></inline-editor></h5></h3>
+
+
+  <h3>"Type Password": <h5><inline-editor type="password"
+    [(ngModel)]="item.plot" (onSave)="saveEditable($event)"
+  ></inline-editor></h5></h3>
+
+  <inline-editor type="password" [(ngModel)]="editablePassword" (onSave)="saveEditable($event)"></inline-editor>
+
+
+
+
+  <h6>id: {{item.id}}, title: {{item.title}}</h6>
+  <p>year: {{item.year}}</p>
+</div>
+
+<div>
+        <inline-editor type="text" [(ngModel)]="editableText" (onSave)="saveEditable($event)" name="editableText1" size="8"></inline-editor>
+    </div>
+    <div>
+        <inline-editor type="password" [(ngModel)]="editablePassword" (onSave)="saveEditable($event)"></inline-editor>
+    </div>
+    <div>
+        <inline-editor type="textarea" [(ngModel)]="editableTextArea" (onSave)="saveEditable($event)"> </inline-editor>
+    </div>
+    <div>
+        <inline-editor type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event)" [options]="editableSelectOptions"
+        value="valor"></inline-editor>
+  </div>`

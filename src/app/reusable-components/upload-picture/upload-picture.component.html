@@ -1,0 +1,7 @@
+<div *ngIf="globalService.user" class="uploader-area">
+  <div (click)="showImageBrowseDlg()">
+    <img class="image-icon" src="/assets/images/image-icon.svg">
+    <span>Change Image</span>
+  </div>
+  <input #uploadFile (change)="loadSelectedFile(uploadFile)" type="file" accept="image/*" class="d-none" />
+</div>
