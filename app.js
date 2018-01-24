@@ -114,4 +114,4 @@ global.dbQuery = Rest.query;
 
 app.use(express.static(isOnLiveServer ? './dist' : './src'));
 
-app.listen('3000', () => console.log('MDB ACTIVE ON PORT 3000!'));
+app.listen('3333', () => console.log('MDB ACTIVE ON PORT 3333!'));
