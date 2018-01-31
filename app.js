@@ -24,7 +24,8 @@ const isOnLiveServer = os.totalmem() < 3 * 1024**3;
 
 // Added CORS to read further: https://enable-cors.org/server_expressjs.html
 // app.use(cors());
-!isOnLiveServer && app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+!isOnLiveServer && app.use(cors({credentials: true, origin: 'https://mini-mdb.ketchupkungen.se'}));
+//!isOnLiveServer && app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
 
 /* MIDDLEWARE */
@@ -40,7 +41,6 @@ new Search(app);
 new UploadPicture(app);
 
 /* Create URL for Genre */
-
 app.get('/genre', async (req, res) => {
   let s = await Rest.query('DESCRIBE films genre');
   s = s[0].Type;
@@ -107,10 +107,10 @@ scrapeIMDB();
 setInterval(scrapeIMDB, 60 * 1000);
 
 // On server
-//app.get('/imdb-news', (req, res) => {
+app.get('/imdb-news', (req, res) => {
 
 // Localhost
-app.get('http://localhost:3333/imdb-news', (req, res) => {
+//app.get('http://localhost:3333/imdb-news', (req, res) => {
 
     res.json(newsFromIMDB);
 })
