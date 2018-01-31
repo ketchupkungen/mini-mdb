@@ -35,7 +35,7 @@ export class AddPersonComponent implements OnInit {
   }
 
   loadCountries() {
-    this.http.get('http://localhost:3000/countries/').toPromise().then(data => {
+    this.http.get('http://localhost:3333/countries/').toPromise().then(data => {
       this.countries = data.json();
     }, err => {
       console.log('Error occured.');

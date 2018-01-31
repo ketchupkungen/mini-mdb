@@ -18,10 +18,6 @@ Clone or download the source files & install dependencies:
 
 ```sh
 $ npm install
-
-$ npm install scraperjs
-
-$ npm install phantomjs-prebuilt
 ```
 
 ### mySQL
@@ -45,9 +41,9 @@ module.exports = {
 ```
 
 
-### Start up server on port 3000
+### Start up server on port 3333
 
-Run the app (http://localhost:3000)
+Run the app (http://localhost:3333)
 
 ```sh
 $ node app

@@ -64,7 +64,9 @@ export class FrontPageComponent implements OnInit {
   }
 
   loadNews() {
+    // Deployed
     this.http.get('/imdb-news').toPromise().then(data => {
+    // Locally
     //this.http.get('http://localhost:3000/imdb-news').toPromise().then(data => {
       const arr = data.json();
       this.news = arr.slice(0, 2);

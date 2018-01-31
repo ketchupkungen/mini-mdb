@@ -100,7 +100,7 @@ export class UploadPictureComponent {
       imgData: imgData
     };
 
-    this.http.post('http://localhost:3000/upload-picture', { filename, imgData }).toPromise().then(data => {
+    this.http.post('http://localhost:3333/upload-picture', { filename, imgData }).toPromise().then(data => {
       location.reload();
     }, err => {
         console.log('Error occured.', err);

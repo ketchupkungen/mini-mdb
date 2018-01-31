@@ -106,7 +106,12 @@ async function scrapeIMDB(){
 scrapeIMDB();
 setInterval(scrapeIMDB, 60 * 1000);
 
-app.get('/imdb-news', (req, res) => {
+// On server
+//app.get('/imdb-news', (req, res) => {
+
+// Localhost
+app.get('http://localhost:3333/imdb-news', (req, res) => {
+
     res.json(newsFromIMDB);
 })
 
