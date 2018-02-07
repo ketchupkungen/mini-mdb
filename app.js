@@ -67,7 +67,7 @@ app.use(Rest.start({
     database: 'mdb',
     multipleStatements: true
   },
-  baseUrl: '/rest',
+  baseUrl: '/',
   baseUrlForVidTables: '/vid',
   idMap: {
     films_actors: 'filmId',
@@ -118,6 +118,7 @@ app.get('/imdb-news', (req, res) => {
 global.dbQuery = Rest.query;
 
 app.use(express.static(isOnLiveServer ? './dist' : './src'));
+
 app.all('*', (req, res) => {
   res.json({path:req.path});
 });
