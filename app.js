@@ -118,5 +118,8 @@ app.get('/imdb-news', (req, res) => {
 global.dbQuery = Rest.query;
 
 app.use(express.static(isOnLiveServer ? './dist' : './src'));
+app.all('*', (req, res) => {
+  res.json({path:req.path});
+});
 
 app.listen('3333', () => console.log('MDB ACTIVE ON PORT 3333!'));
