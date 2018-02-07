@@ -67,7 +67,7 @@ app.use(Rest.start({
     database: 'mdb',
     multipleStatements: true
   },
-  baseUrl: '/',
+  baseUrl: '/rest',
   baseUrlForVidTables: '/vid',
   idMap: {
     films_actors: 'filmId',
@@ -119,6 +119,9 @@ global.dbQuery = Rest.query;
 
 app.use(express.static(isOnLiveServer ? './dist' : './src'));
 
+app.all('*', (req,res)=>{
+  res.sendFile('./dist/index.html');
+});
 app.all('*', (req, res) => {
   res.json({path:req.path});
 });
